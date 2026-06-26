@@ -1,0 +1,87 @@
+- Criar a estrutura inicial do projeto backend e instalar as dependências necessárias utilizando npm para o funcionamento completo da API
+
+- criar banco de dados, foi escolhido como banco o Mysql, pois neste exato momento é o que nos agrada mais, sendo feito um query que criou a tabela de usuarios, onde tem o id, nome, email, senha, e data que a conta foi criada, para mais controle.
+
+- fazer conexão do banco de dados com o backend usando o mysql2 e o dotenv na pasta 'config/database.js'. As credenciais ficam fora do código-fonte, reduzindo o risco de exposição acidental ao publicar o projeto no GitHub(segurança em primeiro lugar), se a conexão funcionar ou der erro, será mostrado no terminal.
+
+- criar a primeira função do codigo, onde ele busca todos os usuarios da tabela "usuarios" no banco de dados usando um pool query em 'models/userModel.js', depois de fazer a chamada ele passa o resultado pro Controller em 'controllers/authController', onde tem uma função que recebe os dados retornados pela consulta SQL e devolve um json com os dados obtidos e o status da requisição fica 200, podendo ser feito a busca acessando a url(se tiver em abiente local): http://localhost:3000/api/usuarios, fazendo uma requisição GET, essa rota foi definida com essa função pelo route em 'routes/authRoutes', onde ela pega a função feita no controller e atribui a essa rota, que passa para o app.js, que coloca no ar.
+
+- criar a função de criar usuarios e mandar eles para o banco de dados, usando a mesma lógica da função anterior, mas revertendo algumas ordens, primeiro fazer a requisição POST, essa requisição é passada ao controller que recebe o body da requisição, e separa o nome, email e senha, depois ele verifica se todos os campos foram preenchidos, senão, volta erro 400, se passar, ele primeiro transforma a senha em hash antes de passar para o banco de dados utilizando bcrypt com salt rounds igual a 10, logo apó isso, ele cria o novo usuario e volta com a esposta de status 201, caso tenha colocado um email já existente, ele retorna erro 400, com a mensagema visando, caso tudo ocorra bem, o novo usuario é passado ao model que faz o query para o banco de dados e cria esse novo usuario no banco, sempre com a senha em hash, nunca em string, para enviar as informações de registro, voê pode acessar: http://localhost:3000/api/registro, fazendo uma requisição post. (todas as requisições estão sendo feitas usando o postman, para saber mais sobre... pesquise.
+
+- Criar a função de login, onde novamente faremos um POST, dessa vez iremos acessar: http://localhost:3000/api/login, onde iremos colocar no body o email e a senha, o servidor ira mandar essa requisição para passar novamente pelo controller, onde lá tem uma função que pega tudo que foi passado no body, depois verifica se enviou email e senha, se sim, ele espera a função de buscar usuarios por email, que foi criada no model rodar, se retonar true para as informações, ele devolve com a mensagem de que o login foi realizado junto com o status de 200, mas se tiver algum erro, ele ira avisar, com o erro 401, e uma mensagem mais especifica.
+
+
+
+
+====================================================================================================
+                PRÁTICAS DE SEGURANÇA E FERRAMENTAS ULTILIZADAS NO PROJETO
+
+HASH DE SENHAS COM bcrypt:
+    As senhas dos usuários nunca são armazenadas em texto puro no banco de dados.
+    Antes de serem salvas, são transformadas em hash utilizando o bcrypt.
+Exemplo:
+    Senha original:
+    123456
+
+    Hash armazenado:
+    $2b$10$4fP4s8v9Hf...
+Salt Rounds: 10
+
+
+Variáveis de Ambiente (.env)
+Proteção Contra SQL Injection
+Validação de Campos Obrigatórios
+Restrição de E-mail Único
+Ocultação de Informações de Login
+
+
+=====================================================================================================
+                                    DEPENDÊNCIAS DO PROJETO
+
+Dependências de Produção
+
+EXPRESS (v5.2.1)
+Responsável por:
+    Criação da API REST.
+    Gerenciamento de rotas.
+    Tratamento de requisições e respostas HTTP.
+
+MySQL2
+Responsável por:
+    Conexão com o banco de dados MySQL.
+    Execução de consultas SQL.
+    Gerenciamento de pool de conexões.
+    Suporte a Promises e Async/Await.
+
+DOTENV (v17.4.2)
+Responsável por:
+    Carregar variáveis de ambiente do arquivo .env.
+    Gerenciar informações sensíveis da aplicação.
+
+BCRYPT
+Responsável por:
+    Gerar hash seguro para senhas.
+    Comparar senhas durante o processo de login.
+
+CORS (v2.8.6)
+Responsável por:
+    Permitir comunicação entre frontend e backend em domínios diferentes.
+    Controlar permissões de acesso entre origens.
+    Dependências de Desenvolvimento
+
+NODEMON (v3.1.14)
+Responsável por:
+    Reiniciar automaticamente o servidor sempre que um arquivo for alterado durante o desenvolvimento.
+
+===================================================================================================================
+                                        ARQUITETURA DO PROJETO EM GERAL/RESUMO
+
+                                                    CLIENTE
+                                                    ↓
+                                                    ROUTE
+                                                    ↓
+                                                    CONTROLLER
+                                                    ↓
+                                                    MMODEL
+                                                    ↓
+                                                    MYSQL
