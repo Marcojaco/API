@@ -18,15 +18,6 @@ Atualmente o projeto possui:
 - Variáveis de ambiente
 - Pool de conexões com MySQL
 
-Futuramente serão implementados:
-
-- Login com JWT
-- Middleware de autenticação
-- Recuperação de senha
-- Controle de permissões
-- Painel administrativo
-- Integração completa com Frontend React
-
 ---
 
 # Tecnologias Utilizadas
@@ -122,7 +113,7 @@ MySQL
 Clone o projeto:
 
 ```bash
-git clone https://github.com/Marcojaco/ipbFloramar.git
+git clone https://github.com/Marcojaco/API.git
 ```
 
 Entre na pasta:
@@ -358,44 +349,6 @@ POST /api/login
 GET  /api/perfil
 PUT  /api/perfil
 ```
-
----
-
-# Melhorias Futuras
-
-## Autenticação
-
-- [ ] JWT
-- [ ] Middleware de autenticação
-- [ ] Logout
-- [ ] Refresh Token
-
-## Usuários
-
-- [ ] Atualizar perfil
-- [ ] Excluir usuário
-- [ ] Recuperar senha
-
-## Segurança
-
-- [ ] Helmet
-- [ ] Rate Limit
-- [ ] Validação com Zod
-- [ ] Logs de auditoria
-
-## Banco
-
-- [ ] Migrations
-- [ ] Seeds
-- [ ] Backup automático
-
-## Frontend
-
-- [ ] Tela de Login
-- [ ] Tela de Cadastro
-- [ ] Dashboard
-- [ ] Integração React + API
-
 ---
 
 # Padrão de Desenvolvimento
@@ -426,7 +379,7 @@ Toda regra de negócio deve ficar em Controllers ou Services.
 
 # Autor
 
-Projeto desenvolvido para estudo e implementação do sistema IPB Floramar.
+Projeto desenvolvido para estudo
 
 ---
 
@@ -442,9 +395,3 @@ Projeto desenvolvido para estudo e implementação do sistema IPB Floramar.
 - Listagem de usuários
 - Hash de senha com bcrypt
 
-## Próxima versão
-
-- Login
-- JWT
-- Middleware de autenticação
-- Rotas protegidas
