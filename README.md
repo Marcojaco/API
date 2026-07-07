@@ -18,7 +18,6 @@ Atualmente o projeto possui:
 - Variáveis de ambiente
 - Pool de conexões com MySQL
 
-
 # Tecnologias Utilizadas
 
 ## Backend
@@ -112,7 +111,7 @@ MySQL
 Clone o projeto:
 
 ```bash
-git clone https://github.com/Marcojaco/ipbFloramar.git
+git clone https://github.com/Marcojaco/API.git
 ```
 
 Entre na pasta:
@@ -341,6 +340,16 @@ POST /api/registro
 GET  /api/login
 ```
 
+Rotas planejadas:
+
+```http
+POST /api/login
+GET  /api/perfil
+PUT  /api/perfil
+```
+---
+
+=======
 # Padrão de Desenvolvimento
 
 Sempre seguir:
@@ -369,6 +378,10 @@ Toda regra de negócio deve ficar em Controllers ou Services.
 
 # Autor
 
+
+Projeto desenvolvido para estudo
+=======
+
 Projeto desenvolvido para estudo.
 
 ---
@@ -384,3 +397,4 @@ Projeto desenvolvido para estudo.
 - Cadastro de usuários
 - Listagem de usuários
 - Hash de senha com bcrypt
+
