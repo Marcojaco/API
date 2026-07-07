@@ -18,8 +18,6 @@ Atualmente o projeto possui:
 - Variáveis de ambiente
 - Pool de conexões com MySQL
 
----
-
 # Tecnologias Utilizadas
 
 ## Backend
@@ -351,6 +349,7 @@ PUT  /api/perfil
 ```
 ---
 
+=======
 # Padrão de Desenvolvimento
 
 Sempre seguir:
@@ -379,7 +378,11 @@ Toda regra de negócio deve ficar em Controllers ou Services.
 
 # Autor
 
+
 Projeto desenvolvido para estudo
+=======
+
+Projeto desenvolvido para estudo.
 
 ---
 
